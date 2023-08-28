@@ -274,7 +274,11 @@ La clave de la concurrencia en __Go__ son las gorutinas y los canales.
 
 ### _Paralelismo_
 
-El _paralelismo_ consuste en ejecutar __a la vez__ y eso siempre debe suceder en distintos procesadores o distintos cores, utilizando hardware diferente para cada proceso. Habrá dos o más tareas ejecutándose __al mismo tiempo__ al utilizar hardware diferente. _Go_ provee de un mecanismo de __concurrencia__ no de _paralelismo_, sin embargo es capaz de manejar los _cores de CPU_ disponibles y utilizar _paralelismo_ de forma transparente, siempre que eso sea posible dentro de nuestro programa.
+El _paralelismo_ consiste en ejecutar __a la vez__ y eso siempre debe suceder en distintos procesadores o distintos cores, utilizando hardware diferente para cada proceso. Habrá dos o más tareas ejecutándose __al mismo tiempo__ al utilizar hardware diferente. _Go_ provee de un mecanismo de __concurrencia__ no de _paralelismo_, sin embargo es capaz de manejar los _cores de CPU_ disponibles y utilizar una especie _paralelismo_ de forma transparente, siempre que eso sea posible dentro de nuestro programa. En cualquier caso, en _Go_, siempre hablaremos de concurrencia.
+
+Hay que tener en cuenta que aunque un procesador disponga de varios cores, estos no son procesadores completos, sino que comparten algunos recursos como caché de nivel dos y otros espacios compartidos.
+
+Hay un muy buen vídeo explicativo de _Manuel y Antonio Rubio_ titulado [No, tu PC no será más rapido](https://www.youtube.com/watch?v=05xDgi80-yw). En este mismo vídeo nos recomiendan una charla de _Rob Pike_ titulada [Concurrencia no es paralelismo](https://www.youtube.com/watch?v=oV9rvDllKEg).
 
 ## ¿Go soporta excepciones?
 
