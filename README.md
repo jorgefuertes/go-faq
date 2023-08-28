@@ -4,6 +4,46 @@ Por Jorge Fuertes Alfranca AKA Queru.
 
 Libre distribución con licencia GPL v3 o superior.
 
+## Contenidos
+
+- [Beneficios de usar Go frente a otros lenguajes](#beneficios-de-usar-go-frente-a-otros-lenguajes)
+- [¿Qué tipos de datos usa Go?](#qué-tipos-de-datos-usa-go)
+- [¿Qué tipo de conversión soporta Go?](#qué-tipo-de-conversión-soporta-go)
+- [¿Qué es una gorutina y como la puedes detener?](#qué-es-una-gorutina-y-como-la-puedes-detener)
+- [¿Cómo podemos comprobar el tipo de una variable en tiempo de ejecución?](#cómo-podemos-comprobar-el-tipo-de-una-variable-en-tiempo-de-ejecución)
+- [Concatenar strings](#concatenar-strings)
+- [¿Qué son las interfaces y cómo funcionan?](#qué-son-las-interfaces-y-cómo-funcionan)
+- [¿Se pueden devolver múltiples valores desde una función?](#se-pueden-devolver-múltiples-valores-desde-una-función)
+- [Formatear una cadena sin imprimirla](#formatear-una-cadena-sin-imprimirla)
+- [Diferencias entre concurrencia y _paralelismo_ en __Go__](#diferencias-entre-concurrencia-y-paralelismo-en-go)
+  - [Concurrencia](#concurrencia)
+  - [Paralelismo](#paralelismo)
+- [¿Go soporta excepciones?](#go-soporta-excepciones)
+- [¿Qué es un puntero?](#qué-es-un-puntero)
+  - [¿Es bueno usar punteros en todos los casos?](#es-bueno-usar-punteros-en-todos-los-casos)
+  - [Escape analysis](#escape-analysis)
+  - [Optimizaciones específicas de la implementación](#optimizaciones-específicas-de-la-implementación)
+  - [No sobreactuar](#no-sobreactuar)
+- [Diferencias entre un canal sin buffer y otro con buffer](#diferencias-entre-un-canal-sin-buffer-y-otro-con-buffer)
+  - [Unbuffered](#unbuffered)
+  - [Buffered](#buffered)
+- [Valor por defecto de un boleano](#valor-por-defecto-de-un-boleano)
+- [¿Qué es el type assertion o aserción de tipos?](#qué-es-el-type-assertion-o-aserción-de-tipos)
+- [¿Cuales de los siguientes son tipos derivados en Go?](#cuales-de-los-siguientes-son-tipos-derivados-en-go)
+- [¿Qué es cierto acerca de un bucle for en Go?](#qué-es-cierto-acerca-de-un-bucle-for-en-go)
+- [¿Existe un bucle while en Go?](#existe-un-bucle-while-en-go)
+- [¿Cual de las siguientes variables es una cadena en Go?](#cual-de-las-siguientes-variables-es-una-cadena-en-go)
+- [¿Cual de las siguientes funciones retorna la capacidad de un slice y cuantos elementos puede alojar?](#cual-de-las-siguientes-funciones-retorna-la-capacidad-de-un-slice-y-cuantos-elementos-puede-alojar)
+- [Afirmaciones correctas sobre interfaces](#afirmaciones-correctas-sobre-interfaces)
+- [¿Cual es el zero value de un `interface`?](#cual-es-el-zero-value-de-un-interface)
+- [Afirmaciones correctas sobre estructuras](#afirmaciones-correctas-sobre-estructuras)
+- [Qué tipos de datos permiten agrupar o combinar posibles diferentes tipos en uno solo](#qué-tipos-de-datos-permiten-agrupar-o-combinar-posibles-diferentes-tipos-en-uno-solo)
+- [Todas las gorutinas terminan cuando termina la función `main`](#todas-las-gorutinas-terminan-cuando-termina-la-función-main)
+- [Cómo se declara una variable anónima en Go](#cómo-se-declara-una-variable-anónima-en-go)
+- [Valor por defecto de `error`](#valor-por-defecto-de-error)
+- [Método usado para escribir datos a un fichero](#método-usado-para-escribir-datos-a-un-fichero)
+- [Método para crear un fichero](#método-para-crear-un-fichero)
+
 ## Beneficios de usar Go frente a otros lenguajes
 
 - Go se diseño de forma pragmática, no es un experimento académico. Cada característica y decisión sobre su sintáxis se pensó para hacer más fácil la vida del programador.
@@ -35,6 +75,87 @@ j := 60.1 // float64
 sum1 := float(i) + j
 ```
 
+## ¿Qué es una gorutina y como la puedes detener?
+
+Es una función o un método que se ejecuta concurrentemente con otras _gorutinas_ usando un hilo especial para _gorutina_. Los hilos de _gorutinas_ son mucho más ligeros que un hilo estándar, y muchos programas __Go__ utilizan cientos de _gorutinas_.
+
+```text
+                   channel
++------------+  send    receive  +------------+
+|            | ----------------> |            |
+| gorutina 1 |  receive    send  | gorutina 2 |
+|            | <---------------- |            |
++------------+                   +------------+
+```
+
+Para crear una _gorutina_ usamos la palabra reservada `go` antes de la llamada la función:
+
+```go
+package main
+
+import (
+ "fmt"
+ "time"
+)
+
+func main() {
+ start := time.Now()
+ go func() {
+  for i := 0; i < 3; i++ {
+## ¿Qué es una gorutina y como la puedes detener?
+
+Es una función o un método que se ejecuta concurrentemente con otras _gorutinas_ usando un hilo especial para _gorutina_. Los hilos de _gorutinas_ son mucho más ligeros que un hilo estándar, y muchos programas __Go__ utilizan cientos de _gorutinas_.
+
+```text
+                   channel
++------------+  send    receive  +------------+
+|            | ----------------> |            |
+| gorutina 1 |  receive    send  | gorutina 2 |
+|            | <---------------- |            |
++------------+                   +------------+
+```
+
+Para crear una _gorutina_ usamos la palabra reservada `go` antes de la llamada la función:
+
+```go
+package main
+
+import (
+ "fmt"
+ "time"
+)
+
+func main() {
+ start := time.Now()
+ go func() {
+  for i := 0; i < 3; i++ {
+## ¿Qué es una gorutina y como la puedes detener?
+
+Es una función o un método que se ejecuta concurrentemente con otras _gorutinas_ usando un hilo especial para _gorutina_. Los hilos de _gorutinas_ son mucho más ligeros que un hilo estándar, y muchos programas __Go__ utilizan cientos de _gorutinas_.
+
+```text
+                   channel
++------------+  send    receive  +------------+
+|            | ----------------> |            |
+| gorutina 1 |  receive    send  | gorutina 2 |
+|            | <---------------- |            |
++------------+                   +------------+
+```
+
+Para crear una _gorutina_ usamos la palabra reservada `go` antes de la llamada la función:
+
+```go
+package main
+
+import (
+ "fmt"
+ "time"
+)
+
+func main() {
+ start := time.Now()
+ go func() {
+  for i := 0; i < 3; i++ {
 ## ¿Qué es una gorutina y como la puedes detener?
 
 Es una función o un método que se ejecuta concurrentemente con otras _gorutinas_ usando un hilo especial para _gorutina_. Los hilos de _gorutinas_ son mucho más ligeros que un hilo estándar, y muchos programas __Go__ utilizan cientos de _gorutinas_.
@@ -245,7 +366,7 @@ O con `fmt`:
 fmt.Printf("%s, %s", "uno", "dos")
 ```
 
-## ¿Qué son los interfaces y cómo funcionan?
+## ¿Qué son las interfaces y cómo funcionan?
 
 Son un tipo especial en __Go__ que define un conjunto de métodos pero que no provee de su implementación, es decir, describimos la firma de los métodos. Los valores de tipo `interface` pueden sustituirse por cualquier valor que implemente ese conjunto de métodos.
 
@@ -272,7 +393,7 @@ La concurrencia es una propiedad que permite tener múltiples tareas en progreso
 
 La clave de la concurrencia en __Go__ son las gorutinas y los canales.
 
-### _Paralelismo_
+### Paralelismo
 
 El _paralelismo_ consiste en ejecutar __a la vez__ y eso siempre debe suceder en distintos procesadores o distintos cores, utilizando hardware diferente para cada proceso. Habrá dos o más tareas ejecutándose __al mismo tiempo__ al utilizar hardware diferente. _Go_ provee de un mecanismo de __concurrencia__ no de _paralelismo_, sin embargo es capaz de manejar los _cores de CPU_ disponibles y utilizar una especie _paralelismo_ de forma transparente, siempre que eso sea posible dentro de nuestro programa. En cualquier caso, en _Go_, siempre hablaremos de concurrencia.
 
